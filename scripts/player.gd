@@ -25,7 +25,7 @@ func _physics_process(delta):
     animate()
 
 func move(delta):
-    var inputVector = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+    var inputVector = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
     if inputVector == Vector2.ZERO:
         state = idle
         applyFriction(friction * delta)

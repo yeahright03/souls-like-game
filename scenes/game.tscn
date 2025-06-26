@@ -1156,4 +1156,4 @@ tile_set = SubResource("TileSet_lbhrr")
 [node name="player" parent="." instance=ExtResource("1_uwrxv")]
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(2.8, 2.8)
+zoom = Vector2(3, 3)
