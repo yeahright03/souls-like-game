@@ -7,8 +7,12 @@ const maxSpeed = 120
 enum {idle, run}
 var state = idle
 
+enum weaponState {melee, ranged}
+var currentWeaponState = weaponState.ranged
+
 @onready var animationTree = $AnimationTree
 @onready var stateMachine = animationTree["parameters/playback"]
+@onready var gun = $gun
 
 var blendPosition : Vector2 = Vector2.ZERO
 var blendPosPaths = [
@@ -23,6 +27,23 @@ var animTreeStateKeys = [
 func _physics_process(delta):
     move(delta)
     animate()
+
+func _process(delta: float) -> void:
+    if Input.is_action_just_pressed("weaponSwitch"):
+        if currentWeaponState == weaponState.melee:
+            print("switching to ranged!")
+            gun.visible = true
+            gun.set_process(true)
+            #melee.visible = false
+            #melee.set_process(false)
+            currentWeaponState = weaponState.ranged
+        elif currentWeaponState == weaponState.ranged:
+            print("switching to melee!")
+            gun.visible = false
+            gun.set_process(false)
+            #melee.visible = true
+            #melee.set_process(true)
+            currentWeaponState = weaponState.melee
 
 func move(delta):
     var inputVector = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
