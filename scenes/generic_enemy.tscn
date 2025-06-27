@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://w16dfs1sr6m6"]
+
+[ext_resource type="Texture2D" uid="uid://shhsaxiygspq" path="res://textures/mock-up-enemy.png" id="1_8fubi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v2kyb"]
+radius = 5.72268
+height = 23.4981
+
+[node name="generic enemy" type="CharacterBody2D"]
+scale = Vector2(0.1, 0.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8fubi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+scale = Vector2(12.7562, -10.2987)
+shape = SubResource("CapsuleShape2D_v2kyb")

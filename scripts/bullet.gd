@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 
 const speed : int = 300
 
