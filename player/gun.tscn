@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://db335dwgxgxhf"]
+[gd_scene load_steps=3 format=3 uid="uid://hu5bnyd5yh0y"]
 
 [ext_resource type="Script" uid="uid://hj6pevsse8ce" path="res://scripts/gun.gd" id="1_og67c"]
 [ext_resource type="Texture2D" uid="uid://ds82gcx16bm0o" path="res://textures/mock-up-gun.png" id="1_x77fm"]
