@@ -33,7 +33,8 @@ func _physics_process(delta):
 	move(delta)
 	animate()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	# checks weaponState to switch between weapons
 	if Input.is_action_just_pressed("weaponSwitch"):
 		if currentWeaponState == weaponState.melee:
 			print("switching to ranged!")
@@ -51,6 +52,7 @@ func _process(delta: float) -> void:
 			currentWeaponState = weaponState.melee
 
 func move(delta):
+	# takes input to move
 	var inputVector = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 	if inputVector == Vector2.ZERO:
 		state = idle
@@ -62,6 +64,7 @@ func move(delta):
 	move_and_slide()
 
 func applyFriction(amount) -> void:
+	# takes amount to calculate friction
 	if velocity.length() > amount:
 		velocity -= velocity.normalized() * amount
 	else:

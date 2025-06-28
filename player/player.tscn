@@ -1,8 +1,9 @@
-[gd_scene load_steps=114 format=3 uid="uid://ckm8i43n1sbin"]
+[gd_scene load_steps=115 format=3 uid="uid://ckm8i43n1sbin"]
 
 [ext_resource type="Texture2D" uid="uid://bd4c5xp0ps6k2" path="res://textures/player_spritesheet_texture_a.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://b6gvm531v2atp" path="res://scripts/player.gd" id="1_g2els"]
-[ext_resource type="PackedScene" uid="uid://hu5bnyd5yh0y" path="res://scenes/gun.tscn" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://hu5bnyd5yh0y" path="res://player/gun.tscn" id="3_yw30f"]
+[ext_resource type="PackedScene" uid="uid://22r0qw2wmwoo" path="res://player/spear.tscn" id="4_dqkch"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 radius = 7.0
@@ -968,5 +969,8 @@ parameters/idle/idle_bs2d/blend_position = Vector2(0, 0)
 parameters/run/TimeScale/scale = 1.7
 parameters/run/run_bs2d/blend_position = Vector2(0, 0)
 
-[node name="gun" parent="." instance=ExtResource("3_qhqgy")]
+[node name="gun" parent="." instance=ExtResource("3_yw30f")]
+position = Vector2(0, -12)
+
+[node name="spear" parent="." instance=ExtResource("4_dqkch")]
 position = Vector2(0, -12)
