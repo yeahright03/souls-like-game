@@ -1,15 +1,50 @@
 extends Node2D
 
-func _process(_delta: float) -> void:
-    look_at(get_global_mouse_position())
+var swinging : bool = false
+var alreadyHitTargets : Array = []
+var lastRotation : float = 0.0
+var swingTimer : float = 0.0
+var followSpeed : float = 12.0 # lower = heavier
+var desiredRotation : float = 0.0
+const swingDuration : float = 0.3
+const minRotationSpeed : int = 700
 
-    # flip sprite based on angle
-    rotation_degrees = wrap(rotation_degrees, 0, 360)
-    if rotation_degrees > 90 and rotation_degrees < 270:
-        scale.y = -1
-    else:
-        scale.y = 1
+func _process(delta: float) -> void:
+	desiredRotation = (get_global_mouse_position() - global_position).angle()
+	rotation = lerp_angle(rotation, desiredRotation, delta * followSpeed)
+	#look_at(get_global_mouse_position())
 
-    # prints when being pressed
-    if Input.is_action_just_pressed("playerAttack"):
-        print("swing!!")
+	# flip sprite based on angle
+	rotation_degrees = wrap(rotation_degrees, 0, 360)
+	if rotation_degrees > 90 and rotation_degrees < 270:
+		scale.y = -1
+	else:
+		scale.y = 1
+
+	var rotationSpeed : float = abs(rotation_degrees - lastRotation) / delta
+
+	if rotationSpeed > minRotationSpeed and not swinging:
+		swinging = true
+		swingTimer = swingDuration
+		alreadyHitTargets.clear()
+		print("swing!!")
+
+	if swinging:
+		swingTimer -= delta
+		if swingTimer <= 0:
+			swinging = false
+			swingTimer = 0.0
+			
+	lastRotation = rotation_degrees
+
+	# prints when being pressed
+#    if Input.is_action_just_pressed("playerAttack"):
+#        print("swing!!")
+
+
+func _on_area_2d_body_entered(body:Node2D) -> void:
+	if swinging:
+		var swingSpeed : float = abs(rotation_degrees - lastRotation)
+		var damage : float = clamp(swingSpeed / 10, 1, 10)
+		print("Hit ", body.name, " for ", damage, " damage!!")
+		alreadyHitTargets.append(body)

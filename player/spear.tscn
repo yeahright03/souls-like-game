@@ -21,3 +21,5 @@ texture = ExtResource("2_r2qau")
 position = Vector2(20, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_s3grw")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
