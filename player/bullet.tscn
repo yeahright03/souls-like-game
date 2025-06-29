@@ -18,10 +18,13 @@ texture = ExtResource("2_boyjm")
 scale = Vector2(2.5, 2.5)
 
 [node name="bulletHit" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bulletHit"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_y25gk")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="bulletHit" to="." method="_on_bullet_hit_area_entered"]
 [connection signal="body_entered" from="bulletHit" to="." method="_on_bullet_hit_body_entered"]

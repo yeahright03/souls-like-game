@@ -4,7 +4,7 @@ var swinging : bool = false
 var alreadyHitTargets : Array = []
 var lastRotation : float = 0.0
 var swingTimer : float = 0.0
-var followSpeed : float = 12.0 # lower = heavier
+var followSpeed : float = 25.0 # lower = heavier
 var desiredRotation : float = 0.0
 const swingDuration : float = 0.3
 const minRotationSpeed : int = 700
@@ -41,10 +41,10 @@ func _process(delta: float) -> void:
 #    if Input.is_action_just_pressed("playerAttack"):
 #        print("swing!!")
 
-
-func _on_area_2d_body_entered(body:Node2D) -> void:
-	if swinging:
-		var swingSpeed : float = abs(rotation_degrees - lastRotation)
-		var damage : float = clamp(swingSpeed / 10, 1, 10)
-		print("Hit ", body.name, " for ", damage, " damage!!")
+func _on_melee_swing_area_body_entered(body:Node2D) -> void:
+	if swinging and body.name == "generic enemy":
+		#var swingSpeed : float = abs(rotation_degrees - lastRotation)
+		#var damage : float = clamp(swingSpeed / 10, 1, 10)
+		#print("Hit ", body.name, " for ", damage, " damage!!")
+		print("swung hit!")
 		alreadyHitTargets.append(body)
