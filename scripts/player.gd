@@ -1,13 +1,13 @@
 extends CharacterBody2D
 
-@export var dodgeSpeed : float = 400
-@export var dodgeTime : float = 0.5
+@export var dodgeSpeed : float = 400 # determines how fast dodge is
+@export var dodgeTime : float = 0.5 # determines how long dodge is
 var currentDodgeTime : float = 0
-@export var dodgeDuplicateTime : float = 0.05
+@export var dodgeDuplicateTime : float = 0.05 # determines when ghosts spawn after dodging
 var currentDodgeDuplicateTime : float = 0
-@export var duplicateLifeTime : float = 0.3
+@export var duplicateLifeTime : float = 0.3 # determines how long ghosts are alive for
 var isDodging : bool = false
-@export var dodgeTransparency : float = 0.7
+@export var dodgeTransparency : float = 0.7 # determines ghost transparency
 
 const acceleration = 800
 const friction = 500
@@ -16,7 +16,7 @@ const maxSpeed = 120
 @onready var animationTree = $AnimationTree
 @onready var stateMachine = animationTree["parameters/playback"]
 @onready var gun = $gun
-@onready var spear = $spear
+@onready var sword = $sword
 
 enum {idle, run}
 var state = idle
@@ -35,8 +35,9 @@ var animTreeStateKeys = [
 ]
 
 func _ready():
-	spear.visible = false
-	spear.set_process(false)
+	# sets sword default behaviour
+	sword.visible = false
+	sword.set_process(false)
 
 func _physics_process(delta):
 	move(delta)
@@ -49,15 +50,15 @@ func _process(_delta: float) -> void:
 			print("switching to ranged!")
 			gun.visible = true
 			gun.set_process(true)
-			spear.visible = false
-			spear.set_process(false)
+			sword.visible = false
+			sword.set_process(false)
 			currentWeaponState = weaponState.ranged
 		elif currentWeaponState == weaponState.ranged:
 			print("switching to melee!")
 			gun.visible = false
 			gun.set_process(false)
-			spear.visible = true
-			spear.set_process(true)
+			sword.visible = true
+			sword.set_process(true)
 			currentWeaponState = weaponState.melee
 
 func move(delta):
@@ -75,6 +76,7 @@ func move(delta):
 			applyMovement(inputVector * acceleration * delta)
 			blendPosition = inputVector
 
+	# takes currentDodgeTime to limit dodge length, also checks when to spawn dodge ghosts
 	if isDodging:
 		currentDodgeTime += delta
 		currentDodgeDuplicateTime += delta
@@ -86,6 +88,7 @@ func move(delta):
 			currentDodgeDuplicateTime = 0.0
 			createDuplicate()
 
+	# checks for key press to dodge
 	if isDodging == false && Input.is_action_just_pressed("moveDodge"):
 		isDodging = true
 		velocity = dodgeSpeed * inputVector
@@ -101,14 +104,17 @@ func applyFriction(amount) -> void:
 		velocity = Vector2.ZERO
 
 func applyMovement(amount) -> void:
+	# takes amount and turns into movement (velocity)
 	velocity += amount
 	velocity = velocity.limit_length(maxSpeed)
 
 func animate() -> void:
+	# get called to change AnimatedSprite2D's current animation
 	stateMachine.travel(animTreeStateKeys[state])
 	animationTree.set(blendPosPaths[state], blendPosition)
 
 func createDuplicate():
+	# created 'dodge shadows'
 	var duplicate = $AnimatedSprite2D.duplicate(true)
 	duplicate.material = $AnimatedSprite2D.material.duplicate(true)
 	duplicate.material.set_shader_parameter("opacity", dodgeTransparency)

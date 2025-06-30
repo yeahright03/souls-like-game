@@ -5,6 +5,7 @@ const bullet = preload("res://player/bullet.tscn")
 @onready var gunMuzzle : Marker2D = $Marker2D
 
 func _process(_delta: float) -> void:
+    # takes mouse input to aim gun
     look_at(get_global_mouse_position())
 
     # flip sprite based on angle

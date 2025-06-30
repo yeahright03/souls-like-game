@@ -1,13 +1,14 @@
 extends Node2D
 
-var uselessTimer : float = 0.05
-var wasDeflected : bool = false
+var uselessTimer : float = 0.05 # time until bullet becomes active
+var wasDeflected : bool = false # checks if it is a normal or critical hit
 const speed : int = 300
 
 func _process(delta: float) -> void:
 	# gives bullet speed
 	position += transform.x.normalized() * speed * delta
 
+	# makes bullet unable to do anything until the timer runs out
 	if uselessTimer >= 0.0:
 		uselessTimer -= delta
 
@@ -16,6 +17,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
 
 func _on_bullet_hit_body_entered(body:Node2D) -> void:
+	# checks for bullet timer
 	if uselessTimer <= 0.0:
 		# prints when enemy is registering hits
 		if body.name == "generic enemy":
@@ -24,18 +26,12 @@ func _on_bullet_hit_body_entered(body:Node2D) -> void:
 			else:
 				print("HIT!")
 			queue_free()
-#		if body.name == "player":
-#			var player = body
-#			if player.isDodging:
-#				print("dodge")
-#			else:
-#				print("player hit!")
-#				queue_free()
 
 func _on_bullet_hit_area_entered(area:Area2D) -> void:
-	var spear = area.get_parent()
+	# takes area and checks for deflect or player hit
+	var sword = area.get_parent()
 	if area.name == "meleeSwingArea":
-		if spear.swinging:
+		if sword.swinging:
 			print("deflect with swing")
 			rotation_degrees += 180
 			wasDeflected = true

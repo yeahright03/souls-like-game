@@ -2,17 +2,17 @@ extends Node2D
 
 var swinging : bool = false
 var alreadyHitTargets : Array = []
-var lastRotation : float = 0.0
-var swingTimer : float = 0.0
-@export var followSpeed : float = 25.0 # lower = heavier
-var desiredRotation : float = 0.0
+var lastRotation : float = 0
+var swingTimer : float = 0
+@export var followSpeed : float = 25 # lower = heavier
+var desiredRotation : float = 0
 const swingDuration : float = 0.3
-const minRotationSpeed : int = 700
+@export var minRotationSpeed : int = 700 # lower = easier to swing
 
 func _process(delta: float) -> void:
+	# takes mouse position to aim sword
 	desiredRotation = (get_global_mouse_position() - global_position).angle()
 	rotation = lerp_angle(rotation, desiredRotation, delta * followSpeed)
-	#look_at(get_global_mouse_position())
 
 	# flip sprite based on angle
 	rotation_degrees = wrap(rotation_degrees, 0, 360)
@@ -23,12 +23,14 @@ func _process(delta: float) -> void:
 
 	var rotationSpeed : float = abs(rotation_degrees - lastRotation) / delta
 
+	# takes rotation speed and checks if to return swining, clears already hit targets
 	if rotationSpeed > minRotationSpeed and not swinging:
 		swinging = true
 		swingTimer = swingDuration
 		alreadyHitTargets.clear()
 		print("swing!!")
 
+	# limits how long swing lasts
 	if swinging:
 		swingTimer -= delta
 		if swingTimer <= 0:
@@ -37,11 +39,8 @@ func _process(delta: float) -> void:
 			
 	lastRotation = rotation_degrees
 
-	# prints when being pressed
-#    if Input.is_action_just_pressed("playerAttack"):
-#        print("swing!!")
-
 func _on_melee_swing_area_body_entered(body:Node2D) -> void:
+	# checks if body was hit or not
 	if swinging and body.name == "generic enemy":
 		#var swingSpeed : float = abs(rotation_degrees - lastRotation)
 		#var damage : float = clamp(swingSpeed / 10, 1, 10)

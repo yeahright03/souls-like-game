@@ -1,19 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://22r0qw2wmwoo"]
 
-[ext_resource type="Script" uid="uid://cw4lb5i23hq0y" path="res://scripts/melee.gd" id="1_cmegp"]
-[ext_resource type="Texture2D" uid="uid://dn8lwrfpd6iq5" path="res://textures/sword-prototype-longer.png" id="2_cmegp"]
+[ext_resource type="Script" uid="uid://cw4lb5i23hq0y" path="res://scripts/melee.gd" id="1_hv1tj"]
+[ext_resource type="Texture2D" uid="uid://dn8lwrfpd6iq5" path="res://textures/sword-prototype-longer.png" id="2_3oxjh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s3grw"]
 radius = 5.0
 
-[node name="spear" type="Node2D"]
-script = ExtResource("1_cmegp")
+[node name="sword" type="Node2D"]
+script = ExtResource("1_hv1tj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(10, 14)
 rotation = 0.785398
 scale = Vector2(0.68, 0.68)
-texture = ExtResource("2_cmegp")
+texture = ExtResource("2_3oxjh")
 
 [node name="meleeSwingArea" type="Area2D" parent="."]
 collision_layer = 8
