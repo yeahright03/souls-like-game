@@ -39,3 +39,10 @@ func _on_bullet_hit_area_entered(area:Area2D) -> void:
 			print("deflect with swing")
 			rotation_degrees += 180
 			wasDeflected = true
+	if area.name == "playerHitBox":
+		var player = area.get_parent()
+		if player.isDodging:
+			print("DODGED!")
+		else:
+			print("PLAYER HIT!")
+			queue_free()

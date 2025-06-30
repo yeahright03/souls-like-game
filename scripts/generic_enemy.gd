@@ -1,13 +1,14 @@
 extends CharacterBody2D
 
 const bullet = preload("res://player/bullet.tscn")
-var player
+#var player
 var playerSpotted : bool = false
 var timeSinceShot : float = 1
 
 func _process(delta: float) -> void:
 	if playerSpotted == true:
-		look_at(get_node("../player").position)
+		look_at(get_node("../player/playerHitBox").global_position)
+		print(get_node("../player/playerHitBox").global_position)
 		if timeSinceShot >= 1:
 			print("pew!!")
 			var bulletInstance = bullet.instantiate()
