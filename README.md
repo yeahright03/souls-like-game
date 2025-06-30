@@ -1,4 +1,4 @@
- # Souls-like Game
+# Souls-like Game
 
 Prototype game
 
