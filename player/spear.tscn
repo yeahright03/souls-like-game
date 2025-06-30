@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://22r0qw2wmwoo"]
+
+[ext_resource type="Script" uid="uid://cw4lb5i23hq0y" path="res://scripts/melee.gd" id="1_cmegp"]
+[ext_resource type="Texture2D" uid="uid://dy4c5qqwnenvu" path="res://textures/mock-up-melee.png" id="2_r2qau"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s3grw"]
+radius = 6.99999
+height = 32.0
+
+[node name="spear" type="Node2D"]
+script = ExtResource("1_cmegp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 0)
+rotation = 0.785398
+scale = Vector2(0.075, 0.075)
+texture = ExtResource("2_r2qau")
+
+[node name="meleeSwingArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="meleeSwingArea"]
+position = Vector2(24, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_s3grw")
+
+[connection signal="body_entered" from="meleeSwingArea" to="." method="_on_melee_swing_area_body_entered"]
