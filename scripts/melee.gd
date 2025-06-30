@@ -4,7 +4,7 @@ var swinging : bool = false
 var alreadyHitTargets : Array = []
 var lastRotation : float = 0.0
 var swingTimer : float = 0.0
-var followSpeed : float = 25.0 # lower = heavier
+@export var followSpeed : float = 25.0 # lower = heavier
 var desiredRotation : float = 0.0
 const swingDuration : float = 0.3
 const minRotationSpeed : int = 700

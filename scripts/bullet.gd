@@ -24,9 +24,13 @@ func _on_bullet_hit_body_entered(body:Node2D) -> void:
 			else:
 				print("HIT!")
 			queue_free()
-		if body.name == "player":
-			print("player hit!")
-			queue_free()
+#		if body.name == "player":
+#			var player = body
+#			if player.isDodging:
+#				print("dodge")
+#			else:
+#				print("player hit!")
+#				queue_free()
 
 func _on_bullet_hit_area_entered(area:Area2D) -> void:
 	var spear = area.get_parent()

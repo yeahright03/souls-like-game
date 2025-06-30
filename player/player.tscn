@@ -1,12 +1,21 @@
-[gd_scene load_steps=115 format=3 uid="uid://ckm8i43n1sbin"]
+[gd_scene load_steps=118 format=3 uid="uid://ckm8i43n1sbin"]
 
 [ext_resource type="Texture2D" uid="uid://bd4c5xp0ps6k2" path="res://textures/player_spritesheet_texture_a.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://b6gvm531v2atp" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Shader" uid="uid://bvmhuvyftbrt5" path="res://player/player.gdshader" id="2_qjkh3"]
 [ext_resource type="PackedScene" uid="uid://hu5bnyd5yh0y" path="res://player/gun.tscn" id="3_yw30f"]
 [ext_resource type="PackedScene" uid="uid://22r0qw2wmwoo" path="res://player/spear.tscn" id="4_dqkch"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 radius = 7.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yw30f"]
+shader = ExtResource("2_qjkh3")
+shader_parameter/opacity = 1.0
+shader_parameter/r = 0.0
+shader_parameter/g = 0.0
+shader_parameter/b = 0.0
+shader_parameter/color_percent = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("1_3vyb7")
@@ -944,15 +953,21 @@ states/run/position = Vector2(544.667, 183.333)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_y4r1p"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_d2wvv"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_3v2ag")]
 graph_offset = Vector2(-228, -97)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qjkh3"]
+radius = 7.0
+
 [node name="player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_g2els")
+dodgeSpeed = 600.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_yw30f")
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_bpsgo")
 animation = &"idle"
@@ -975,3 +990,11 @@ position = Vector2(0, -12)
 
 [node name="spear" parent="." instance=ExtResource("4_dqkch")]
 position = Vector2(0, -12)
+
+[node name="playerHitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerHitBox"]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_qjkh3")
