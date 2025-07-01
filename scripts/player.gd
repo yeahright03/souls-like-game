@@ -64,6 +64,10 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("DEBUGHEAL"):
 		heal(3)
 
+	if game.deflectedProjectiles == 5:
+		heal(1)
+		game.deflectedProjectiles = 0
+
 func move(delta):
 	# takes input to move
 	var inputVector = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")

@@ -32,9 +32,12 @@ func _on_bullet_hit_area_entered(area:Area2D) -> void:
 	var sword = area.get_parent()
 	if area.name == "meleeSwingArea":
 		if sword.swinging:
-			print("deflect with swing")
+			print("Deflected with swing")
 			rotation_degrees += 180
 			wasDeflected = true
+			if game.playerHP < 3:
+				game.deflectedProjectiles += 1
+				print("Healing in ", 5 - game.deflectedProjectiles, " deflects!")
 	if area.name == "playerHitBox":
 		if uselessTimer <= 0:
 			var player = area.get_parent()
