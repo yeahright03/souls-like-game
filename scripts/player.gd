@@ -70,6 +70,11 @@ func _process(_delta: float) -> void:
 		heal(1)
 		game.deflectedProjectiles = 0
 
+	if game.playerHP == 0:
+		#queue_free()
+		#get_tree().change_scene_to_file("res://scenes/game.tscn")
+		pass
+
 func move(delta):
 	# takes input to move
 	var inputVector = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
