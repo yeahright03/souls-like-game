@@ -36,6 +36,7 @@ func _on_bullet_hit_area_entered(area:Area2D) -> void:
 			rotation_degrees += 180
 			wasDeflected = true
 			if game.playerHP < 3:
+				# checks health before updating deflectedProjectiles
 				game.deflectedProjectiles += 1
 				print("Healing in ", 5 - game.deflectedProjectiles, " deflects!")
 	if area.name == "playerHitBox":
