@@ -10,6 +10,7 @@ Controls:
 * Aim with Mouse
 * Q to switch weapons
 * Shift to Dodge
+* Esc to pause the game
 * H to heal to full health (DEBUG Purposes)
 
 Additional ability:
