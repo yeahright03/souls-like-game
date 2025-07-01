@@ -42,4 +42,7 @@ func _on_bullet_hit_area_entered(area:Area2D) -> void:
 				print("DODGED!")
 			else:
 				print("PLAYER HIT!")
+				if game.playerHP > 0:
+					game.playerHP -= 1
+				print("Current player HP: ", game.playerHP)
 				queue_free()

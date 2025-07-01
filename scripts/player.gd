@@ -61,6 +61,9 @@ func _process(_delta: float) -> void:
 			sword.set_process(true)
 			currentWeaponState = weaponState.melee
 
+	if Input.is_action_just_pressed("DEBUGHEAL"):
+		heal(3)
+
 func move(delta):
 	# takes input to move
 	var inputVector = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
@@ -128,3 +131,12 @@ func createDuplicate():
 	get_parent().add_child(duplicate)
 	await get_tree().create_timer(duplicateLifeTime).timeout
 	duplicate.queue_free()
+
+func heal(healAmount):
+	if game.playerHP < 3:
+		game.playerHP += healAmount
+		if game.playerHP > 3:
+			game.playerHP = 3
+		print("Healed! Current player HP: ", game.playerHP)
+	else:
+		print("you cannot heal at this moment")

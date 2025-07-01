@@ -1,4 +1,4 @@
 extends Node
 
 var playerHP : int = 3
-var deflectedProjectiles = 0
+var deflectedProjectiles : int = 0
