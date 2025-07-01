@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const bullet = preload("res://player/bullet.tscn")
+const projectile = preload("res://player/spearProjectile.tscn")
 var playerSpotted : bool = false # checks for player
 var timeSinceShot : float = 1 # larger = longer time between shots
 
@@ -10,10 +10,10 @@ func _process(delta: float) -> void:
 		look_at(get_node("../player/playerHitBox").global_position)
 		if timeSinceShot >= 1:
 			print("pew!!")
-			var bulletInstance = bullet.instantiate()
-			get_tree().root.add_child(bulletInstance)
-			bulletInstance.global_position = position
-			bulletInstance.rotation = rotation
+			var projectileInstance = projectile.instantiate()
+			get_tree().root.add_child(projectileInstance)
+			projectileInstance.global_position = position
+			projectileInstance.rotation = rotation
 			timeSinceShot = 0.0
 	else:
 		self.rotation = 0
