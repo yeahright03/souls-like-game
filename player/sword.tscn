@@ -4,15 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://dn8lwrfpd6iq5" path="res://textures/sword-prototype-longer.png" id="2_3oxjh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s3grw"]
-radius = 5.0
+radius = 3.0
+height = 20.0
 
 [node name="sword" type="Node2D"]
 script = ExtResource("1_hv1tj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(10, 14)
+position = Vector2(6, 9)
 rotation = 0.785398
-scale = Vector2(0.68, 0.68)
+scale = Vector2(0.43, 0.43)
 texture = ExtResource("2_3oxjh")
 
 [node name="meleeSwingArea" type="Area2D" parent="."]
@@ -20,8 +21,9 @@ collision_layer = 8
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="meleeSwingArea"]
-position = Vector2(23, 0)
+position = Vector2(14, -2.50111e-12)
 rotation = 1.5708
+scale = Vector2(0.999989, 1.01515)
 shape = SubResource("CapsuleShape2D_s3grw")
 
 [connection signal="body_entered" from="meleeSwingArea" to="." method="_on_melee_swing_area_body_entered"]
