@@ -36,7 +36,7 @@ var animTreeStateKeys = [
 
 func _ready():
 	# sets sword default behaviour
-	sword.visible = false
+	sword.hide()
 	sword.set_process(false)
 
 func _physics_process(delta):
@@ -48,16 +48,16 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("weaponSwitch"):
 		if currentWeaponState == weaponState.melee:
 			print("switching to ranged!")
-			gun.visible = true
+			gun.show()
 			gun.set_process(true)
-			sword.visible = false
+			sword.hide()
 			sword.set_process(false)
 			currentWeaponState = weaponState.ranged
 		elif currentWeaponState == weaponState.ranged:
 			print("switching to melee!")
-			gun.visible = false
+			gun.hide()
 			gun.set_process(false)
-			sword.visible = true
+			sword.show()
 			sword.set_process(true)
 			currentWeaponState = weaponState.melee
 
@@ -71,9 +71,7 @@ func _process(_delta: float) -> void:
 		game.deflectedProjectiles = 0
 
 	if game.playerHP == 0:
-		#queue_free()
-		#get_tree().change_scene_to_file("res://scenes/game.tscn")
-		pass
+		queue_free()
 
 func move(delta):
 	# takes input to move
