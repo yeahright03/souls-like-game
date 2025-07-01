@@ -18,7 +18,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func _on_bullet_hit_body_entered(body:Node2D) -> void:
 	# checks for bullet timer
-	if uselessTimer <= 0.0:
+	if uselessTimer <= 0:
 		# prints when enemy is registering hits
 		if body.name == "generic enemy":
 			if wasDeflected:
@@ -36,9 +36,10 @@ func _on_bullet_hit_area_entered(area:Area2D) -> void:
 			rotation_degrees += 180
 			wasDeflected = true
 	if area.name == "playerHitBox":
-		var player = area.get_parent()
-		if player.isDodging:
-			print("DODGED!")
-		else:
-			print("PLAYER HIT!")
-			queue_free()
+		if uselessTimer <= 0:
+			var player = area.get_parent()
+			if player.isDodging:
+				print("DODGED!")
+			else:
+				print("PLAYER HIT!")
+				queue_free()
