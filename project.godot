@@ -14,6 +14,7 @@ config/name="souls-like-game"
 run/main_scene="uid://c3mdrqrijy754"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+config/windows_native_icon="res://icons/favicon.ico"
 
 [autoload]
 
