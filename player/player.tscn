@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://hu5bnyd5yh0y" path="res://player/gun.tscn" id="3_yw30f"]
 [ext_resource type="PackedScene" uid="uid://22r0qw2wmwoo" path="res://player/sword.tscn" id="4_dqkch"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
-radius = 7.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g6k8r"]
+radius = 2.5
+height = 10.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yw30f"]
 shader = ExtResource("2_qjkh3")
@@ -963,7 +964,9 @@ script = ExtResource("1_g2els")
 dodgeSpeed = 750.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_g2els")
+position = Vector2(0, -2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_g6k8r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
