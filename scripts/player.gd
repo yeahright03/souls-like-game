@@ -52,6 +52,7 @@ func _process(_delta: float) -> void:
 			gun.set_process(true)
 			sword.hide()
 			sword.set_process(false)
+			sword.swinging = false
 			currentWeaponState = weaponState.ranged
 		elif currentWeaponState == weaponState.ranged:
 			print("switching to melee!")
