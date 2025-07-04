@@ -24,6 +24,7 @@ game="*res://global/game.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+mouse_cursor/custom_image="uid://u01otks7kceg"
 
 [input]
 
