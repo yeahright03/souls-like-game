@@ -9,7 +9,7 @@ func _process(_delta: float) -> void:
 func _on_repawn_pressed() -> void:
 	hide()
 	game.playerHP = 3
-	get_tree().change_scene_to_file("res://scenes/game.tscn")
+	get_tree().change_scene_to_file("res://scenes/areas/templeArea01.tscn")
 
 func _on_quit_pressed() -> void:
 	hide()
