@@ -127,6 +127,7 @@ func animate() -> void:
 
 func createDuplicate():
 	# created 'dodge shadows'
+	@warning_ignore("SHADOWED_VARIABLE_BASE_CLASS")
 	var duplicate = $AnimatedSprite2D.duplicate(true)
 	duplicate.material = $AnimatedSprite2D.material.duplicate(true)
 	duplicate.material.set_shader_parameter("opacity", dodgeTransparency)
