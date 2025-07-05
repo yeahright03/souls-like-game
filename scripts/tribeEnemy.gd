@@ -1,20 +1,27 @@
 extends CharacterBody2D
 
 const projectile = preload("res://player/spearProjectile.tscn")
+@onready var spearWeapon = $spearWeapon
 var playerSpotted : bool = false # checks for player
 var timeSinceShot : float = 1 # larger = longer time between shots
+
+func _ready() -> void:
+	spearWeapon.hide()
 
 func _process(delta: float) -> void:
 	# takes playerSpotted and begin shooting at player based on enemy angle
 	if playerSpotted == true:
-		look_at(get_node("../../player/playerHitBox").global_position)
+		spearWeapon.look_at(get_tree().current_scene.get_node("player").position)
 		if timeSinceShot >= 1:
+			timeSinceShot = 0.0
+			spearWeapon.show()
+			await get_tree().create_timer(0.4).timeout
+			spearWeapon.hide()
 			print("Throw!!")
 			var projectileInstance = projectile.instantiate()
 			get_tree().root.add_child(projectileInstance)
-			projectileInstance.global_position = position
-			projectileInstance.rotation = rotation
-			timeSinceShot = 0.0
+			projectileInstance.global_position = spearWeapon.global_position
+			projectileInstance.rotation = spearWeapon.rotation
 	else:
 		self.rotation = 0
 

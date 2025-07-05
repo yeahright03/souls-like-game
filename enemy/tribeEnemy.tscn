@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1xl76k78c802"]
+
+[ext_resource type="Script" uid="uid://c65oe7qf4kwjd" path="res://scripts/tribeEnemy.gd" id="1_d6ywx"]
+[ext_resource type="Texture2D" uid="uid://shhsaxiygspq" path="res://textures/mock-up-enemy.png" id="1_i5apy"]
+[ext_resource type="PackedScene" uid="uid://cca58ddwuu5oc" path="res://enemy/spearWeapon.tscn" id="2_oiotw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qlxtr"]
+radius = 5.72268
+height = 23.4981
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_53ger"]
+radius = 1780.0
+
+[node name="tribeEnemy" type="CharacterBody2D"]
+script = ExtResource("1_d6ywx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_i5apy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+scale = Vector2(0.1, 0.1)
+shape = SubResource("CapsuleShape2D_qlxtr")
+
+[node name="playerDetection" type="Area2D" parent="."]
+scale = Vector2(0.1, 0.1)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetection"]
+shape = SubResource("CircleShape2D_53ger")
+
+[node name="spearWeapon" parent="." instance=ExtResource("2_oiotw")]
+
+[connection signal="body_entered" from="playerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="playerDetection" to="." method="_on_player_detection_body_exited"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cca58ddwuu5oc"]
+
+[ext_resource type="Texture2D" uid="uid://5d03ocd5v2nu" path="res://textures/spear-concept-1.png" id="1_8asem"]
+
+[node name="spearWeapon" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("1_8asem")

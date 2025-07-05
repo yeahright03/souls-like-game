@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dpm71c1c0vl0n" path="res://scenes/pauseMenu.tscn" id="7_r2hvy"]
 [ext_resource type="PackedScene" uid="uid://b7a3s6l15lyoa" path="res://scenes/deathScreen.tscn" id="8_55fsi"]
 [ext_resource type="PackedScene" uid="uid://c24io8xcf342a" path="res://scenes/sceneTransitionAnimation.tscn" id="9_h0wcw"]
-[ext_resource type="PackedScene" uid="uid://w16dfs1sr6m6" path="res://scenes/generic_enemy.tscn" id="10_mqhi0"]
+[ext_resource type="PackedScene" uid="uid://d1xl76k78c802" path="res://enemy/tribeEnemy.tscn" id="10_p1i2g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h0nkb"]
 texture = ExtResource("1_mwoxm")
@@ -683,7 +683,7 @@ tile_set = SubResource("TileSet_aajns")
 tile_map_data = PackedByteArray("AAD8//v/AAAHAAIAAAD8//z/AAAHAAMAAAD8//3/AAAHAAQAAAA=")
 tile_set = SubResource("TileSet_4j8rp")
 
-[node name="player" parent="." instance=ExtResource("6_d21k0")]
+[node name="player" parent="." groups=["player"] instance=ExtResource("6_d21k0")]
 position = Vector2(-573, 1)
 duplicateLifeTime = 0.1
 dodgeTransparency = 0.4
@@ -728,7 +728,7 @@ shape = SubResource("RectangleShape2D_mqhi0")
 
 [node name="enemies" type="Node2D" parent="."]
 
-[node name="generic enemy" parent="enemies" instance=ExtResource("10_mqhi0")]
-position = Vector2(-37, -13)
+[node name="tribeEnemy" parent="enemies" instance=ExtResource("10_p1i2g")]
+position = Vector2(-110, -51)
 
 [connection signal="body_entered" from="triggerBoxes/areaExit" to="." method="_on_area_exit_body_entered"]
