@@ -41,9 +41,10 @@ func _process(delta: float) -> void:
 
 func _on_melee_swing_area_body_entered(body:Node2D) -> void:
 	# checks if body was hit or not
-	if swinging and body.name == "generic enemy":
+	if swinging and body.is_in_group("enemies"):
 		#var swingSpeed : float = abs(rotation_degrees - lastRotation)
 		#var damage : float = clamp(swingSpeed / 10, 1, 10)
 		#print("Hit ", body.name, " for ", damage, " damage!!")
-		print("swung hit!")
+		print("Swung hit, 5 DMG!")
+		body.health -= 5
 		alreadyHitTargets.append(body)

@@ -22,11 +22,11 @@ func _on_bullet_hit_body_entered(body:Node2D) -> void:
 		# prints when enemy is registering hits
 		if body.is_in_group("enemies"):
 			if wasDeflected:
-				print("CRIT HIT!")
-				body.health -= 3
+				print("CRIT HIT! 5 DMG")
+				body.health -= 5
 			else:
-				print("HIT!")
-				body.health -= 1
+				print("HIT! 2 DMG")
+				body.health -= 2
 			queue_free()
 
 func _on_bullet_hit_area_entered(area:Area2D) -> void:

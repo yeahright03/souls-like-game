@@ -4,7 +4,7 @@ const projectile = preload("res://player/spearProjectile.tscn")
 @onready var spearWeapon = $spearWeapon
 var playerSpotted : bool = false # checks for player
 var timeSinceShot : float = 1 # larger = longer time between shots
-var health = 3
+var health = 10
 
 func _ready() -> void:
 	spearWeapon.hide()
