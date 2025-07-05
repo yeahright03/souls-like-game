@@ -1,7 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://hu5bnyd5yh0y"]
+[gd_scene load_steps=16 format=3 uid="uid://hu5bnyd5yh0y"]
 
 [ext_resource type="Script" uid="uid://hj6pevsse8ce" path="res://scripts/gun.gd" id="1_yknm8"]
+[ext_resource type="AudioStream" uid="uid://l2q3j167nwc4" path="res://sound/sound effects/trimmed/gun-shoot-1-v1.wav" id="3_48vku"]
 [ext_resource type="Texture2D" uid="uid://cmnh80i0vq2go" path="res://textures/gun-prototype-animation.png" id="3_b605q"]
+[ext_resource type="AudioStream" uid="uid://babxd5eckq1lo" path="res://sound/sound effects/trimmed/gun-shoot-1-v2.wav" id="4_83xil"]
+[ext_resource type="AudioStream" uid="uid://bejk8hmj8vowt" path="res://sound/sound effects/trimmed/gun-shoot-1-v3.wav" id="5_twxxf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_48vku"]
 atlas = ExtResource("3_b605q")
@@ -84,6 +87,12 @@ _data = {
 &"shoot": SubResource("Animation_pwevo")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tlr6c"]
+streams_count = 3
+stream_0/stream = ExtResource("3_48vku")
+stream_1/stream = ExtResource("4_83xil")
+stream_2/stream = ExtResource("5_twxxf")
+
 [node name="gun" type="Node2D"]
 script = ExtResource("1_yknm8")
 
@@ -100,3 +109,6 @@ animation = &"shoot"
 libraries = {
 &"": SubResource("AnimationLibrary_arkw6")
 }
+
+[node name="bulletShot" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_tlr6c")

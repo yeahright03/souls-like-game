@@ -2,6 +2,7 @@ extends Node2D
 
 const bullet = preload("res://player/bullet.tscn")
 @onready var shootAnimation = $AnimationPlayer
+@onready var bulletShotSound = $bulletShot
 var timeSinceShot : float = 0.125
 
 @onready var gunMuzzle : Marker2D = $Marker2D
@@ -23,6 +24,7 @@ func _process(delta: float) -> void:
     # shoots a bullet when being pressed with rotation being based on angle
     if Input.is_action_just_pressed("playerAttack") and timeSinceShot >= 0.125:
         shootAnimation.play("shoot")
+        bulletShotSound.play()
         timeSinceShot = 0
         await get_tree().create_timer(0.05).timeout
         var bulletInstance = bullet.instantiate()
