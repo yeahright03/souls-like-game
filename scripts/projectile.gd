@@ -20,11 +20,13 @@ func _on_bullet_hit_body_entered(body:Node2D) -> void:
 	# checks for bullet timer
 	if uselessTimer <= 0:
 		# prints when enemy is registering hits
-		if body.name == "generic enemy":
+		if body.is_in_group("enemies"):
 			if wasDeflected:
 				print("CRIT HIT!")
+				body.health -= 3
 			else:
 				print("HIT!")
+				body.health -= 1
 			queue_free()
 
 func _on_bullet_hit_area_entered(area:Area2D) -> void:

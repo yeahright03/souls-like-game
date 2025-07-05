@@ -4,9 +4,11 @@ const projectile = preload("res://player/spearProjectile.tscn")
 @onready var spearWeapon = $spearWeapon
 var playerSpotted : bool = false # checks for player
 var timeSinceShot : float = 1 # larger = longer time between shots
+var health = 3
 
 func _ready() -> void:
 	spearWeapon.hide()
+	add_to_group("enemies")
 
 func _process(delta: float) -> void:
 	# takes playerSpotted and begin shooting at player based on enemy angle
@@ -29,14 +31,17 @@ func _process(delta: float) -> void:
 	if timeSinceShot < 1:
 		timeSinceShot += delta
 
+	if health <= 0:
+		queue_free()
+
 func _on_player_detection_body_entered(body: Node2D) -> void:
 	# returns playerSpotted when player enters detection range
 	if body.name == "player":
-		print("player spotted")
+		print("Player spotted")
 		playerSpotted = true
 
 func _on_player_detection_body_exited(body:Node2D) -> void:
 	# returns playerSpotted to false when player exits detection range
 	if body.name == "player":
-		print("i lost the player")
+		print("Player lost")
 		playerSpotted = false

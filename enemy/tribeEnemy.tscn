@@ -12,6 +12,8 @@ height = 23.4981
 radius = 1780.0
 
 [node name="tribeEnemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 13
 script = ExtResource("1_d6ywx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -19,8 +21,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_i5apy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 10)
-scale = Vector2(0.1, 0.1)
+position = Vector2(-1, 1)
 shape = SubResource("CapsuleShape2D_qlxtr")
 
 [node name="playerDetection" type="Area2D" parent="."]

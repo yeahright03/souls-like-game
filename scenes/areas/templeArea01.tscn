@@ -683,7 +683,7 @@ tile_set = SubResource("TileSet_aajns")
 tile_map_data = PackedByteArray("AAD8//v/AAAHAAIAAAD8//z/AAAHAAMAAAD8//3/AAAHAAQAAAA=")
 tile_set = SubResource("TileSet_4j8rp")
 
-[node name="player" parent="." groups=["player"] instance=ExtResource("6_d21k0")]
+[node name="player" parent="." instance=ExtResource("6_d21k0")]
 position = Vector2(-573, 1)
 duplicateLifeTime = 0.1
 dodgeTransparency = 0.4
@@ -730,5 +730,14 @@ shape = SubResource("RectangleShape2D_mqhi0")
 
 [node name="tribeEnemy" parent="enemies" instance=ExtResource("10_p1i2g")]
 position = Vector2(-110, -51)
+
+[node name="tribeEnemy2" parent="enemies" instance=ExtResource("10_p1i2g")]
+position = Vector2(-407, 104)
+
+[node name="tribeEnemy3" parent="enemies" instance=ExtResource("10_p1i2g")]
+position = Vector2(-333, -77)
+
+[node name="tribeEnemy4" parent="enemies" instance=ExtResource("10_p1i2g")]
+position = Vector2(-145, 99)
 
 [connection signal="body_entered" from="triggerBoxes/areaExit" to="." method="_on_area_exit_body_entered"]
