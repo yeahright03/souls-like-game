@@ -1,6 +1,7 @@
 extends Control
 
 var paused : bool = false
+@export var targetLevel : String
 
 func _process(_delta: float) -> void:
 	if game.playerHP <= 0:
@@ -9,7 +10,7 @@ func _process(_delta: float) -> void:
 func _on_repawn_pressed() -> void:
 	hide()
 	game.playerHP = 3
-	get_tree().change_scene_to_file("res://scenes/areas/templeArea01.tscn")
+	get_tree().change_scene_to_file(targetLevel)
 
 func _on_quit_pressed() -> void:
 	hide()

@@ -23,6 +23,23 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.596078)
 
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -482.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_d1fl2")
+text = "YOU DIED"
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -51,23 +68,6 @@ tooltip_text = "Wow, is it that boring?"
 text = "QUIT TO TITLE
 "
 metadata/_edit_use_anchors_ = true
-
-[node name="CenterContainer2" type="CenterContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -482.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CenterContainer2/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_d1fl2")
-text = "YOU DIED"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/repawn" to="." method="_on_repawn_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]

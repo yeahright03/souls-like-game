@@ -7,7 +7,7 @@ var timeSinceShot : float = 1 # larger = longer time between shots
 func _process(delta: float) -> void:
 	# takes playerSpotted and begin shooting at player based on enemy angle
 	if playerSpotted == true:
-		look_at(get_node("../player/playerHitBox").global_position)
+		look_at(get_node("../../player/playerHitBox").global_position)
 		if timeSinceShot >= 1:
 			print("pew!!")
 			var projectileInstance = projectile.instantiate()
