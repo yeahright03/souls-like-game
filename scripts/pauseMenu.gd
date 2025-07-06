@@ -10,9 +10,11 @@ func pauseMenu():
 	if paused:
 		hide()
 		get_tree().paused = false
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	else:
 		show()
 		get_tree().paused = true
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	paused = !paused
 
