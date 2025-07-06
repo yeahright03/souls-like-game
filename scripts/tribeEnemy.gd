@@ -15,12 +15,17 @@ func _process(delta: float) -> void:
 	if playerSpotted == true:
 		spearWeapon.look_at(get_tree().current_scene.get_node("player").position)
 		if timeSinceShot >= 1:
+			var spearFlip : int = randi_range(1, -1)
+			if spearFlip == 0:
+				spearFlip = 1
 			timeSinceShot = 0.0
+			spearWeapon.scale.y = spearFlip
 			spearWeapon.show()
 			await get_tree().create_timer(0.4).timeout
 			spearWeapon.hide()
 			print("Throw!!")
 			var projectileInstance = projectile.instantiate()
+			projectileInstance.scale.y = spearFlip
 			get_tree().root.add_child(projectileInstance)
 			projectileInstance.global_position = spearWeapon.global_position
 			projectileInstance.rotation = spearWeapon.rotation
