@@ -48,3 +48,4 @@ func _on_melee_swing_area_body_entered(body:Node2D) -> void:
 		print("Swung hit, 5 DMG!")
 		body.health -= 5
 		alreadyHitTargets.append(body)
+		

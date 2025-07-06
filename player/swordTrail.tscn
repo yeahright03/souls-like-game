@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5lqargld7xjr"]
+
+[ext_resource type="Script" uid="uid://b750dkh0f8xu5" path="res://swordTrail.gd" id="1_3oekr"]
+
+[sub_resource type="Curve" id="Curve_3oekr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ekidh"]
+colors = PackedColorArray(1, 1, 1, 1, 0.270588, 0.270588, 0.270588, 0)
+
+[node name="swordTrail" type="Line2D"]
+width = 100.0
+width_curve = SubResource("Curve_3oekr")
+gradient = SubResource("Gradient_ekidh")
+script = ExtResource("1_3oekr")
+maxLength = 30

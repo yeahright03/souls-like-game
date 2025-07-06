@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://22r0qw2wmwoo"]
+[gd_scene load_steps=6 format=3 uid="uid://22r0qw2wmwoo"]
 
 [ext_resource type="Script" uid="uid://cw4lb5i23hq0y" path="res://scripts/melee.gd" id="1_hv1tj"]
 [ext_resource type="Texture2D" uid="uid://dn8lwrfpd6iq5" path="res://textures/sword-prototype-longer.png" id="2_3oxjh"]
+[ext_resource type="PackedScene" uid="uid://b5lqargld7xjr" path="res://player/swordTrail.tscn" id="3_3oxjh"]
+[ext_resource type="Script" uid="uid://2k5hrm1gg0qo" path="res://player/swordTrailTest.gd" id="4_t4id6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s3grw"]
 radius = 4.00004
@@ -25,5 +27,14 @@ position = Vector2(16, 3.4106e-12)
 rotation = 1.5708
 scale = Vector2(0.999989, 1.01515)
 shape = SubResource("CapsuleShape2D_s3grw")
+
+[node name="trailOrigin" type="Marker2D" parent="."]
+process_mode = 4
+position = Vector2(13, 0)
+
+[node name="swordTrailTest" parent="trailOrigin" instance=ExtResource("3_3oxjh")]
+width = 22.0
+script = ExtResource("4_t4id6")
+maxLength = 20
 
 [connection signal="body_entered" from="meleeSwingArea" to="." method="_on_melee_swing_area_body_entered"]
