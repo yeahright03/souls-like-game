@@ -731,4 +731,16 @@ shape = SubResource("RectangleShape2D_mqhi0")
 [node name="tribeEnemy" parent="enemies" instance=ExtResource("10_p1i2g")]
 position = Vector2(-110, -51)
 
+[node name="tribeEnemy2" parent="enemies" instance=ExtResource("10_p1i2g")]
+position = Vector2(101, 98)
+
+[node name="tribeEnemy3" parent="enemies" instance=ExtResource("10_p1i2g")]
+position = Vector2(128, -277)
+
+[node name="tribeEnemy4" parent="enemies" instance=ExtResource("10_p1i2g")]
+position = Vector2(-291, -414)
+
+[node name="tribeEnemy5" parent="enemies" instance=ExtResource("10_p1i2g")]
+position = Vector2(1, -575)
+
 [connection signal="body_entered" from="triggerBoxes/areaExit" to="." method="_on_area_exit_body_entered"]
