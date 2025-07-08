@@ -46,7 +46,7 @@ func _physics_process(delta):
 
 func _process(_delta: float) -> void:
 	# checks weaponState to switch between weapons
-	if Input.is_action_just_pressed("weaponSwitch"):
+	if Input.is_action_just_pressed("weaponSwitch") and canMove:
 		if currentWeaponState == weaponState.melee:
 			print("switching to ranged!")
 			gun.show()
@@ -82,13 +82,14 @@ func move(delta):
 		state = idle
 		applyFriction(friction * delta)
 	else:
-		if isDodging:
-			velocity.x = lerp(velocity.x, 0.0, 0.1)
-			velocity.y = lerp(velocity.y, 0.0, 0.1)
-		else:
-			state = run
-			applyMovement(inputVector * acceleration * delta)
-			blendPosition = inputVector
+		if canMove:
+			if isDodging:
+				velocity.x = lerp(velocity.x, 0.0, 0.1)
+				velocity.y = lerp(velocity.y, 0.0, 0.1)
+			else:
+				state = run
+				applyMovement(inputVector * acceleration * delta)
+				blendPosition = inputVector
 
 	# takes currentDodgeTime to limit dodge length, also checks when to spawn dodge ghosts
 	if isDodging:
@@ -103,7 +104,7 @@ func move(delta):
 			createDuplicate()
 
 	# checks for key press to dodge
-	if isDodging == false && Input.is_action_just_pressed("moveDodge"):
+	if isDodging == false && Input.is_action_just_pressed("moveDodge") and canMove:
 		isDodging = true
 		velocity = dodgeSpeed * inputVector
 		createDuplicate()

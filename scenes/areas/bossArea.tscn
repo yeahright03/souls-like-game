@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://phogqfemm7u1"]
+[gd_scene load_steps=28 format=4 uid="uid://phogqfemm7u1"]
 
 [ext_resource type="Texture2D" uid="uid://clkac7eikkc1m" path="res://textures/free-online-assets/TX Tileset Grass.png" id="1_3c27v"]
 [ext_resource type="Script" uid="uid://cny1xowd753ow" path="res://scenes/areas/bossArea.gd" id="1_ch0n0"]
@@ -684,6 +684,9 @@ stream_0/volume = -15.0
 stream_1/stream = ExtResource("13_67u2m")
 stream_1/volume = -20.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhvep"]
+size = Vector2(80, 20)
+
 [node name="bossArea" type="Node2D"]
 script = ExtResource("1_ch0n0")
 metadata/_edit_vertical_guides_ = [480.0]
@@ -715,6 +718,14 @@ remote_path = NodePath("../../Camera2D")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 process_mode = 3
+
+[node name="darkening" type="ColorRect" parent="UILayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.363, 0.363, 0.363, 0.5)
 
 [node name="rainShader" type="ColorRect" parent="UILayer"]
 material = SubResource("ShaderMaterial_ch0n0")
@@ -750,7 +761,18 @@ z_index = 2
 stream = SubResource("AudioStreamSynchronized_qhvep")
 autoplay = true
 
+[node name="triggerBoxes" type="Node2D" parent="."]
+
+[node name="bossCutscene" type="Area2D" parent="triggerBoxes"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="triggerBoxes/bossCutscene"]
+position = Vector2(0, -747)
+shape = SubResource("RectangleShape2D_qhvep")
+
 [node name="Prototype-boss" type="Sprite2D" parent="."]
 position = Vector2(0, -1112)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("14_qhvep")
+
+[connection signal="body_entered" from="triggerBoxes/bossCutscene" to="." method="_on_boss_cutscene_body_entered"]
