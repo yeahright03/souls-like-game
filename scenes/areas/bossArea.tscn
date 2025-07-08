@@ -1,7 +1,7 @@
-[gd_scene load_steps=28 format=4 uid="uid://phogqfemm7u1"]
+[gd_scene load_steps=30 format=4 uid="uid://phogqfemm7u1"]
 
 [ext_resource type="Texture2D" uid="uid://clkac7eikkc1m" path="res://textures/free-online-assets/TX Tileset Grass.png" id="1_3c27v"]
-[ext_resource type="Script" uid="uid://cny1xowd753ow" path="res://scenes/areas/bossArea.gd" id="1_ch0n0"]
+[ext_resource type="Script" uid="uid://cny1xowd753ow" path="res://scripts/areas/bossArea.gd" id="1_ch0n0"]
 [ext_resource type="Texture2D" uid="uid://dcipplrwyb3d7" path="res://textures/free-online-assets/TX Tileset Stone Ground.png" id="2_6c00w"]
 [ext_resource type="Texture2D" uid="uid://bqgsrdd5ly82m" path="res://textures/free-online-assets/TX Struct.png" id="3_tpxd4"]
 [ext_resource type="Texture2D" uid="uid://dp0mo7cs18n10" path="res://textures/free-online-assets/TX Tileset Wall.png" id="4_5lcpf"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://cqj0pax2v6ct5" path="res://sound/ambience/ambient screaming.ogg" id="12_chaw5"]
 [ext_resource type="AudioStream" uid="uid://cllutkadd3sit" path="res://sound/ambience/rainthunder.mp3" id="13_67u2m"]
 [ext_resource type="Texture2D" uid="uid://btce53rhesawc" path="res://textures/prototype-boss.png" id="14_qhvep"]
+[ext_resource type="PackedScene" uid="uid://d1xl76k78c802" path="res://enemy/tribeEnemy.tscn" id="15_7s8na"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ik0ls"]
 texture = ExtResource("1_3c27v")
@@ -687,6 +688,9 @@ stream_1/volume = -20.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhvep"]
 size = Vector2(80, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7s8na"]
+size = Vector2(48, 96)
+
 [node name="bossArea" type="Node2D"]
 script = ExtResource("1_ch0n0")
 metadata/_edit_vertical_guides_ = [480.0]
@@ -712,6 +716,7 @@ tile_set = SubResource("TileSet_67u2m")
 
 [node name="player" parent="." instance=ExtResource("5_ybbt6")]
 position = Vector2(-1, -64)
+collision_mask = 7
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="player"]
 remote_path = NodePath("../../Camera2D")
@@ -784,5 +789,38 @@ shape = SubResource("RectangleShape2D_qhvep")
 position = Vector2(0, -1112)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("14_qhvep")
+
+[node name="guards" type="Node2D" parent="."]
+
+[node name="guardBlockage" type="StaticBody2D" parent="guards"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="guards/guardBlockage"]
+position = Vector2(0, -688)
+shape = SubResource("RectangleShape2D_7s8na")
+
+[node name="guard1" parent="guards" instance=ExtResource("15_7s8na")]
+position = Vector2(-30, -749)
+enabledShooting = false
+
+[node name="guard2" parent="guards" instance=ExtResource("15_7s8na")]
+position = Vector2(34, -749)
+enabledShooting = false
+
+[node name="guard3" parent="guards" instance=ExtResource("15_7s8na")]
+position = Vector2(-80, -477)
+enabledShooting = false
+
+[node name="guard4" parent="guards" instance=ExtResource("15_7s8na")]
+position = Vector2(79, -477)
+enabledShooting = false
+
+[node name="guard5" parent="guards" instance=ExtResource("15_7s8na")]
+position = Vector2(-81, -289)
+enabledShooting = false
+
+[node name="guard6" parent="guards" instance=ExtResource("15_7s8na")]
+position = Vector2(80, -287)
+enabledShooting = false
 
 [connection signal="body_entered" from="triggerBoxes/bossCutscene" to="." method="_on_boss_cutscene_body_entered"]
