@@ -5,9 +5,10 @@ extends CharacterBody2D
 var currentDodgeTime : float = 0
 @export var dodgeDuplicateTime : float = 0.05 # determines when ghosts spawn after dodging
 var currentDodgeDuplicateTime : float = 0
-@export var duplicateLifeTime : float = 0.3 # determines how long ghosts are alive for
+@export var duplicateLifeTime : float = 0.1 # determines how long ghosts are alive for (0.3 default)
 var isDodging : bool = false
-@export var dodgeTransparency : float = 0.7 # determines ghost transparency
+@export var dodgeTransparency : float = 0.4 # determines ghost transparency (0.7 default)
+var canMove : bool = true
 
 const acceleration = 800
 const friction = 500
