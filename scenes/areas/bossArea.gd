@@ -3,8 +3,10 @@ extends Node2D
 @onready var sceneTransitionAnimation = $Camera2D/screenTransitionAnimation/AnimationPlayer
 @onready var camera = $Camera2D
 @onready var player = $player
+@onready var boss = $"Prototype-boss"
 var targetCameraZoom : float = 2.5
 var zoomSpeed : float = 0.01
+var zoomInProgress : bool = false
 var seenCutscene : bool = false
 var panDuration : float = 2
 var panElapsed : float = 0
@@ -19,10 +21,14 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	sceneTransitionAnimation.play("fadeOut")
 	await get_tree().create_timer(0.5).timeout
+	zoomInProgress = true
+
 
 func _process(delta: float) -> void:
-	await get_tree().create_timer(0.5).timeout
-	camera.zoom = camera.zoom.lerp(Vector2(targetCameraZoom, targetCameraZoom), zoomSpeed)
+	if zoomInProgress:
+		camera.zoom = camera.zoom.lerp(Vector2(targetCameraZoom, targetCameraZoom), zoomSpeed)
+		if camera.zoom == Vector2(targetCameraZoom, targetCameraZoom):
+			zoomInProgress = false
 
 	if isPanning:
 		panElapsed += delta
@@ -31,9 +37,9 @@ func _process(delta: float) -> void:
 
 		if time >= 1:
 			isPanning = false
-			await get_tree().create_timer(1).timeout
+			await get_tree().create_timer(panDuration/2).timeout
 			returnCamera()
-			await get_tree().create_timer(1).timeout
+			await get_tree().create_timer(panDuration/2).timeout
 			player.canMove = true
 
 
@@ -45,7 +51,8 @@ func _on_boss_cutscene_body_entered(body: Node2D) -> void:
 
 		# sets up camera pan
 		panStart = camera.offset
-		panTarget = Vector2(targetCutsceneOffsetX, targetCutsceneOffsetY)
+		#panTarget = Vector2(targetCutsceneOffsetX, targetCutsceneOffsetY)
+		panTarget = boss.global_position - camera.global_position
 		panElapsed = 0
 		isPanning = true
 

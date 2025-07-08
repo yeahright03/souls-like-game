@@ -767,7 +767,17 @@ autoplay = true
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="triggerBoxes/bossCutscene"]
-position = Vector2(0, -747)
+position = Vector2(0, -771)
+shape = SubResource("RectangleShape2D_qhvep")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="triggerBoxes/bossCutscene"]
+position = Vector2(-50, -741)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_qhvep")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="triggerBoxes/bossCutscene"]
+position = Vector2(50, -741)
+rotation = 1.5708
 shape = SubResource("RectangleShape2D_qhvep")
 
 [node name="Prototype-boss" type="Sprite2D" parent="."]
