@@ -112,3 +112,4 @@ libraries = {
 
 [node name="bulletShot" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_tlr6c")
+volume_db = -10.0

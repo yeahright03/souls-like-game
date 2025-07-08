@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bd4c5xp0ps6k2" path="res://textures/player_spritesheet_texture_a.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://b6gvm531v2atp" path="res://scripts/player.gd" id="1_g2els"]
-[ext_resource type="Shader" uid="uid://bvmhuvyftbrt5" path="res://player/player.gdshader" id="2_qjkh3"]
+[ext_resource type="Shader" uid="uid://bvmhuvyftbrt5" path="res://shaders/player.gdshader" id="2_qjkh3"]
 [ext_resource type="PackedScene" uid="uid://hu5bnyd5yh0y" path="res://player/gun.tscn" id="3_yw30f"]
 [ext_resource type="PackedScene" uid="uid://22r0qw2wmwoo" path="res://player/sword.tscn" id="4_dqkch"]
 [ext_resource type="PackedScene" uid="uid://b5lqargld7xjr" path="res://player/swordTrail.tscn" id="6_g6k8r"]
