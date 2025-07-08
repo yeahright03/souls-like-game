@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
         scale.y = 1
 
     # shoots a bullet when being pressed with rotation being based on angle
-    if Input.is_action_just_pressed("playerAttack") and timeSinceShot >= 0.125 and not player.isDodging:
+    if Input.is_action_just_pressed("playerAttack") and timeSinceShot >= 0.125 and not player.isDodging and player.canMove:
         shootAnimation.play("shoot")
         bulletShotSound.play()
         timeSinceShot = 0
