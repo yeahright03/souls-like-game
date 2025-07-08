@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 
 func _on_boss_cutscene_body_entered(body: Node2D) -> void:
 	if body == player and not seenCutscene:
-		#seenCutscene = true
+		seenCutscene = true
 		player.canMove = false
 		player.velocity = Vector2.ZERO
 
