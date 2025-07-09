@@ -8,7 +8,7 @@ extends Node2D
 @onready var guard2 = $guards/guard2
 @onready var guardBlockageCollision = $guards/guardBlockage/CollisionShape2D
 var targetCameraZoom : float = 2.5
-var zoomSpeed : float = 0.05
+var zoomSpeed : float = 0.01
 var zoomInProgress : bool = false
 var seenCutscene : bool = false
 var panDuration : float = 2
