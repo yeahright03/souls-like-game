@@ -3,7 +3,7 @@ extends Node2D
 @onready var sceneTransitionAnimation = $Camera2D/screenTransitionAnimation/AnimationPlayer
 @onready var camera = $Camera2D
 @onready var player = $player
-@onready var boss = $"Prototype-boss"
+@onready var boss = $enemies/"Prototype-boss"
 @onready var guard1 = $guards/guard1
 @onready var guard2 = $guards/guard2
 @onready var guardBlockageCollision = $guards/guardBlockage/CollisionShape2D

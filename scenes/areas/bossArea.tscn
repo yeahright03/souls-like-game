@@ -786,11 +786,6 @@ position = Vector2(50, -741)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_qhvep")
 
-[node name="Prototype-boss" type="Sprite2D" parent="."]
-position = Vector2(0, -1112)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("14_qhvep")
-
 [node name="guards" type="Node2D" parent="."]
 
 [node name="guardBlockage" type="StaticBody2D" parent="guards"]
@@ -825,5 +820,10 @@ position = Vector2(87, -287)
 enabledShooting = false
 
 [node name="enemies" type="Node2D" parent="."]
+
+[node name="Prototype-boss" type="Sprite2D" parent="enemies"]
+position = Vector2(0, -1112)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("14_qhvep")
 
 [connection signal="body_entered" from="triggerBoxes/bossCutscene" to="." method="_on_boss_cutscene_body_entered"]
