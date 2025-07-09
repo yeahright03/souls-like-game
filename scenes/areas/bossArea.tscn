@@ -741,7 +741,7 @@ offset_bottom = 1080.0
 process_mode = 0
 visible = false
 z_index = 3
-targetLevel = "res://scenes/areas/templeArea01.tscn"
+targetLevel = "res://scenes/areas/bossArea.tscn"
 
 [node name="pauseMenu" parent="UILayer" instance=ExtResource("7_ybbt6")]
 process_mode = 0
@@ -759,6 +759,7 @@ position_smoothing_speed = 10.0
 
 [node name="screenTransitionAnimation" parent="Camera2D" instance=ExtResource("8_ik0ls")]
 z_index = 2
+position = Vector2(-26, 9)
 
 [node name="sounds" type="Node" parent="."]
 
@@ -820,7 +821,9 @@ position = Vector2(-81, -289)
 enabledShooting = false
 
 [node name="guard6" parent="guards" instance=ExtResource("15_7s8na")]
-position = Vector2(80, -287)
+position = Vector2(87, -287)
 enabledShooting = false
+
+[node name="enemies" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="triggerBoxes/bossCutscene" to="." method="_on_boss_cutscene_body_entered"]

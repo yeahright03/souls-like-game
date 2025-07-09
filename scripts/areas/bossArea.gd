@@ -11,6 +11,7 @@ var targetCameraZoom : float = 2.5
 var zoomSpeed : float = 0.01
 var zoomInProgress : bool = false
 var seenCutscene : bool = false
+var cutsceneFinished : bool = false
 var panDuration : float = 2
 var panElapsed : float = 0
 var panStart : Vector2 = Vector2.ZERO
@@ -40,11 +41,11 @@ func _process(delta: float) -> void:
 			isPanning = false
 			await get_tree().create_timer(panDuration/2).timeout
 			setupGuard()
-			returnCamera()
-			await get_tree().create_timer(panDuration/2).timeout
-			player.canMove = true
-
-
+			if not cutsceneFinished:
+				returnCamera()
+				await get_tree().create_timer(panDuration/2).timeout
+				player.canMove = true
+				cutsceneFinished = true
 
 func _on_boss_cutscene_body_entered(body: Node2D) -> void:
 	if body == player and not seenCutscene:
